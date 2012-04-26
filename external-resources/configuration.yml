@@ -1,0 +1,12 @@
+name                  : configuration
+useTmpDir             : true
+tmpDir                : /tmp
+putDuplicateToOneSide : true
+duplicateDirName      : duplicate
+uploadClientConfig    :
+    type: ftp
+    connectionConfig :
+        host     : "192.168.0.12"
+        port     : 21
+        login    : user
+        password : user
