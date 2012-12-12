@@ -39,9 +39,10 @@ public class ImageSorter {
 						String newBasename = ImageAnalyzer.getDayTime(file);
 						String extension = ImageAnalyzer.getExtension(file);
 						String year = ImageAnalyzer.getYear(file);
+						String month = ImageAnalyzer.getMonth(file);
 
 						//create destination folder and duplicate folder
-						Path newDirectory = Paths.get(toPath.toString(), year);
+						Path newDirectory = Paths.get(toPath.toString(), year, month);
 						if(!Files.isDirectory(newDirectory, LinkOption.NOFOLLOW_LINKS)) {
 							Files.createDirectory(newDirectory);
 						}

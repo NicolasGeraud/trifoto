@@ -28,7 +28,7 @@ public class UploadClientFtp implements UploadClient {
 		FTPClient ftp = new FTPClient();
 		try {
 			int reply;
-			ftp.connect("192.168.0.12");
+			ftp.connect("192.168.0.5");
 			ftp.login("user", "user");
 			logger.debug(ftp.getReplyString());
 

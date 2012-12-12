@@ -6,7 +6,7 @@ duplicateDirName      : duplicate
 uploadClientConfig    :
     type: ftp
     connectionConfig :
-        host     : "192.168.0.12"
+        host     : "192.168.0.5"
         port     : 21
         login    : user
         password : user

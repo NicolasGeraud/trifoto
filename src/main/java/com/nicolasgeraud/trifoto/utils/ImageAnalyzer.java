@@ -15,6 +15,7 @@ public class ImageAnalyzer {
 
 	private static SimpleDateFormat sdfDayTime = new SimpleDateFormat("yyyyMMdd-HHmmss", Locale.FRANCE);
 	private static SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy", Locale.FRANCE);
+	private static SimpleDateFormat sdfMonth = new SimpleDateFormat("MM", Locale.FRANCE);
 
 	public static String getDayTime(Path image) throws ImageProcessingException, IOException {
 		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
@@ -34,5 +35,10 @@ public class ImageAnalyzer {
 		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
 		Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
 		return sdfYear.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
+	}
+        public static String getMonth(Path image) throws ImageProcessingException, IOException {
+		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
+		Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
+		return sdfMonth.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
 	}
 }
