@@ -21,7 +21,29 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.nicolasgeraud.trifoto.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,9 +57,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>metadata-extractor</groupId>
+			<groupId>com.drewnoakes</groupId>
 			<artifactId>metadata-extractor</artifactId>
-			<version>2.6.3</version>
+			<version>2.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -75,5 +97,10 @@
 			<artifactId>snakeyaml</artifactId>
 			<version>1.10</version>
 		</dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>13.0</version>
+        </dependency>
 	</dependencies>
 </project>

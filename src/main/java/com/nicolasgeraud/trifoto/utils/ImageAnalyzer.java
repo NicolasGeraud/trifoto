@@ -18,13 +18,17 @@ public class ImageAnalyzer {
 	private static SimpleDateFormat sdfMonth = new SimpleDateFormat("MM", Locale.FRANCE);
 
 	public static String getDayTime(Path image) throws ImageProcessingException, IOException {
+        try {
 		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
 		Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
 		StringBuilder sb = new StringBuilder()
 				.append(sdfDayTime.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL)))
-				.append("_")
-				.append(FilenameUtils.getBaseName(image.getFileName().toString()));
+				/*.append("_")
+				.append(FilenameUtils.getBaseName(image.getFileName().toString()))*/;
 		return sb.toString();
+        } catch (Exception e) {
+            return "unknown";
+        }
 	}
 	
 	public static String getExtension(Path image) {
@@ -32,13 +36,22 @@ public class ImageAnalyzer {
 	}
 	
 	public static String getYear(Path image) throws ImageProcessingException, IOException {
-		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
-		Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
-		return sdfYear.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
+		try {
+            Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
+            Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
+            return sdfYear.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
+        } catch (Exception e) {
+            return "unknown";
+        }
 	}
-        public static String getMonth(Path image) throws ImageProcessingException, IOException {
-		Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
-		Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
-		return sdfMonth.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
-	}
+
+    public static String getMonth(Path image) throws ImageProcessingException, IOException {
+        try {
+            Metadata metadata = ImageMetadataReader.readMetadata(image.toFile());
+            Directory directory = metadata.getDirectory(ExifSubIFDDirectory.class);
+            return sdfMonth.format(directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL));
+        } catch (Exception e) {
+            return "unknown";
+        }
+    }
 }
